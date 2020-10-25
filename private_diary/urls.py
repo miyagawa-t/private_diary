@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # diaryサイト用のルーティング設定
     path('', include('diary.urls')),
+    # 認証用のルーティング
+    path('accounts/', include('allauth.urls')),
 ]
