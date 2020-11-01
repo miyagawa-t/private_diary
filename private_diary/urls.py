@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import static
 from django.urls import path, include
+from . import settings_common, settings_dev
 
 urlpatterns = [
     # 管理サイト用のルーティング設定
@@ -24,3 +26,7 @@ urlpatterns = [
     # 認証用のルーティング
     path('accounts/', include('allauth.urls')),
 ]
+
+# 開発サーバーでメディアを配信できるようにする設定
+urlpatterns += static(settings_common.MEDIA_URL,
+                      document_root=settings_dev.MEDIA_ROOT)
